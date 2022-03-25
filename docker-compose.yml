@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  database:
+    build: ./database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./database/.data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
