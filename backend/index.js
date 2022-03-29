@@ -15,7 +15,7 @@ const connection = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
 });
 
-app.get('/', (req, res) => {
+app.get('/search_all', (req, res) => {
   const query = "SELECT * FROM books;";
   connection.query(query, (err, rows) => {
     if (err) {
