@@ -2,19 +2,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20%;
+    padding: 20px 20%;
 }
 
-.search{
+.search-div{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 5%;
+    padding: 20px 50px;
 }
 
 .search input {
     padding: 10px;
     margin: 5px;
+}
+
+.button {
+  border: none;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 7px;
+  cursor: pointer;
 }
 
 h1 {
@@ -52,5 +63,12 @@ h1 {
 .table .table-mnzm {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
     text-align: center;
-    vertical-align: top
+}
+
+#button-delete {
+  background-color: rgb(245, 58, 58);
+}
+
+#button-search {
+    background-color: rgb(73, 73, 255);
 }
