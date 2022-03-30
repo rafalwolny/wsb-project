@@ -13,9 +13,9 @@
   <div class="main-div">
     <h1>Library app</h1>
 
-    <div class="search">
+    <div class="search-div">
       <input class="search-text" type="text" placeholder="Search book"></input>
-      <input class="search-btn" type="submit" value="Search"></input>
+      <input id="button-search" class="button" type="submit" value="Search"></input>
     </div>
 
     <table class="table">
@@ -23,16 +23,11 @@
         <tr>
           <th class="table-mnzm" width="50%">title</th>
           <th class="table-mnzm" width="30%">author</th>
-          <th class="table-mnzm" width="20%">year</th>
+          <th class="table-mnzm" width="10%">year</th>
+          <th class="table-mnzm" width="10%"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="table-mnzm">ksiazka1</td>
-          <td class="table-mnzm">autor1</td>
-          <td class="table-mnzm">2000</td>
-        </tr>
-      </tbody>
+      <tbody class="table-body"></tbody>
     </table>
   </div>
   
