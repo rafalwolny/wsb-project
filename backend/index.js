@@ -1,6 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const mysql = require('mysql');
+const express = require("express");
+const cors = require("cors");
+const mysql = require("mysql");
 const app = express();
 
 app.use(cors());
@@ -15,9 +15,9 @@ const connection = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
 });
 
-app.get('/', (req, res) => {
+app.get("/search_all", (req, res) => {
   const query = "SELECT * FROM books;";
-  connection.query(query, (err, rows) => {
+  connection.query(query, (err, result) => {
     if (err) {
       res.json({
         success: false, err
@@ -25,16 +25,16 @@ app.get('/', (req, res) => {
     }
     else {
       res.json({
-        success: true, rows
+        success: true, result
       });
     }
   });
 });
 
-app.get('/search_book', (req, res) => {
-  const searchValue = `%${req.body.book_title}%`;
+app.get("/search_book/:searchValue", (req, res) => {
+  const searchValue = `%${req.params.searchValue}%`;
   const query = "SELECT * FROM books WHERE book_title LIKE ?;";
-  connection.query(query, searchValue, (err, rows) => {
+  connection.query(query, searchValue, (err, result) => {
     if (err) {
       res.json({
         success: false, err
@@ -42,7 +42,7 @@ app.get('/search_book', (req, res) => {
     }
     else {
       res.json({
-        success: true, rows
+        success: true, result
       });
     }
   });
@@ -62,4 +62,4 @@ app.post("/add_book", (req, res) => {
   ); 
 });
 
-app.listen(3000, () => console.log('listining on port 3000'));
+app.listen(3000, () => console.log("listining on port 3000"));
