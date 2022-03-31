@@ -17,6 +17,10 @@
     margin: 5px;
 }
 
+.search-text {
+    margin-right: 10px;
+}
+
 .button {
   border: none;
   border-radius: 3px;
