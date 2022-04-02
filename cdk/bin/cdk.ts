@@ -11,4 +11,5 @@ const wsbBackendStack: BackendStack = new BackendStack(app, "wsb-backend-stack",
     account: "927305863820",
     region: "eu-west-1",
   },
+  backendBucketName: "wsb-project-backend-data",
 });
