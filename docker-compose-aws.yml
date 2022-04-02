@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  database:
+    image: rafalwolny/wsb-project-database:v1.0.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wsb
+    volumes:
+      - ./database/.data:/var/lib/mysql
+
+  backend:
+    image: rafalwolny/wsb-project-backend:v1.0.0
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: wsb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: database
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
