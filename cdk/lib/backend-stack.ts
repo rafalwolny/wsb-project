@@ -11,7 +11,6 @@ type BackendStackProps = StackProps & {
 }
 
 export class BackendStack extends Stack {
-
   constructor(scope: Construct, id: string, props: BackendStackProps) {
     super(scope, id, props);
 
@@ -46,7 +45,7 @@ export class BackendStack extends Stack {
 
     const backendDeployment = new s3deployment.BucketDeployment(
       this,
-      "frontendDeployment",
+      "backendDeployment",
       {
           sources: [s3deployment.Source.asset("../backend/deployment")],
           destinationBucket: backendBucket,
@@ -69,12 +68,16 @@ export class BackendStack extends Stack {
     ];
 
     // run backend app
-    // const runBackendUserData = [
-    //   "cd",
-    //   `aws s3 cp s3://${props.backendBucketName}/`
-    // ]
+    const runBackendUserData = [
+      "sudo runuser -l ec2-user",
+      `aws s3 cp s3://${props.backendBucketName}/wsb /srv/wsb --recursive`,
+      "cd /srv/wsb",
+      "docker-compose -f docker-compose-aws.yml up",
+    ]
 
-    backendAutoScalingGroup.addUserData(...setupUserData);
+    // create autoscaling group only after deploying backend files to S3 bucket
+    backendAutoScalingGroup.node.addDependency(backendDeployment)
+    backendAutoScalingGroup.addUserData(...setupUserData, ...runBackendUserData);
 
     // CREATE LB AND UNCOMMENT
     // backendAutoScalingGroup.connections.allowFrom(
