@@ -16,7 +16,8 @@ cp $API_CONF_DIR/default.conf $CDK_DEPLOYMENT_DIR/backend/wsb/.
 sed -i "s;http://localhost:3000;https://$DOMAIN_NAME;g" $CDK_DEPLOYMENT_DIR/frontend/index.js
 sed -i "s/TAG/$DOCKER_TAG/g" $CDK_DEPLOYMENT_DIR/backend/wsb/docker-compose-aws.yml
 
+
 ### STEP 3 - execute "cdk deploy"
 echo "Deploying CloudFormation templates..."
 cd cdk
-cdk deploy wsb-frontend-stack wsb-backend-stack 
+cdk deploy wsb-frontend-stack wsb-backend-stack
