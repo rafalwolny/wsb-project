@@ -20,6 +20,7 @@ export class FrontendStack extends Stack {
     super(scope, id, props);
 
     const frontendBucket = new s3.Bucket(this, "frontendBucket", {
+      autoDeleteObjects: true,
       bucketName: props.frontendBucketName,
       publicReadAccess: true,
       removalPolicy: RemovalPolicy.DESTROY,
