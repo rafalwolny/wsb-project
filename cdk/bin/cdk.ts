@@ -18,7 +18,7 @@ const baseProps = {
   hostedZoneId: "Z065110633NEVZ3DSQBU3",
 }
 
-const wsbBackendStack: BackendStack = new BackendStack(app, "wsb-backend-stack",{
+const wsbBackendStack: BackendStack = new BackendStack(app, "wsb-backend-stack", {
   env: {
     account: accountId,
     region: "eu-west-1",
@@ -33,8 +33,8 @@ const wsbBackendStack: BackendStack = new BackendStack(app, "wsb-backend-stack",
   minCapacity: 1,
 });
 
-const cdkFrontendStack: FrontendStack = new FrontendStack(app, "wsb-frontend-stack",{
-  env:{
+const cdkFrontendStack: FrontendStack = new FrontendStack(app, "wsb-frontend-stack", {
+  env: {
     account: accountId,
     region: "us-east-1"
   },

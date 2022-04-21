@@ -28,11 +28,6 @@ export class FrontendStack extends Stack {
       websiteErrorDocument: "index.html",
     });
 
-    const frontendDeployment = new s3deploy.BucketDeployment(this, "frontendDeployment", {
-      sources: [s3deploy.Source.asset("./deployment/frontend")],
-      destinationBucket: frontendBucket,
-    });
-
     const hostedZone = r53.HostedZone.fromHostedZoneAttributes(this, "hostedZone", {
       hostedZoneId: props.hostedZoneId,
       zoneName: props.domainName,
@@ -45,7 +40,7 @@ export class FrontendStack extends Stack {
 
     const frontendDist = new cloudfront.Distribution(this, 'frontendDist', {
       certificate: frontendLBCertificate,
-      defaultBehavior: { 
+      defaultBehavior: {
         origin: new origins.S3Origin(frontendBucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
@@ -56,6 +51,13 @@ export class FrontendStack extends Stack {
       recordName: `${props.frontendSubdomain}.${props.domainName}`,
       target: r53.RecordTarget.fromAlias(new r53Targets.CloudFrontTarget(frontendDist)),
       zone: hostedZone,
+    });
+
+    const frontendDeployment = new s3deploy.BucketDeployment(this, "frontendDeployment", {
+      sources: [s3deploy.Source.asset("./deployment/frontend")],
+      destinationBucket: frontendBucket,
+      distribution: frontendDist,
+      distributionPaths: ["/*"],
     });
   }
 }
