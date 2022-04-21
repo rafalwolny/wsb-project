@@ -1,2 +1,5 @@
 backend/node_modules
+
 database/.data
+
+cdk/deployment

@@ -1,0 +1,8 @@
+{
+  "availability-zones:account=927305863820:region=eu-west-1": [
+    "eu-west-1a",
+    "eu-west-1b",
+    "eu-west-1c"
+  ],
+  "ami:account=927305863820:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=eu-west-1": "ami-09ad61b37018e8534"
+}
