@@ -1,11 +1,11 @@
-#IaC app & Library app
+IaC app & Library app
 -----------
 
 The project consists of two components:
 1. Infrastructure as Code application based on AWS CDK (main)
 2. Simple node.js app called Library App
 
-## Technologies used
+### Technologies used
 
 **IaC app:** CloudFormation with CDK framework written in TypeScript
 
@@ -19,7 +19,7 @@ The project consists of two components:
 Library app
 -----------
 
-## Components
+### Components
 
 1. Frontend:
 * Static `.js`, `.css`, `.html` files under `frontend/` directory
@@ -28,7 +28,7 @@ Library app
 * Node.js backend app
 3. MySQL database
 
-## Start app locally
+### Start app locally
 
 1. Clone the repository
 2. Edit `.env` file located in the root directory (`MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_ROOT_PASSWORD` are mandatory)
@@ -44,14 +44,14 @@ The backend app will be running on http://localhost:8080
 IaC app
 -----------
 
-## Architecture
+### Architecture
 
 The diagram which describes the infrastructure in detail is located in `diagram/` directory.
 The `rafalwolny.pl` domain is provided by OVH registrar and configuration management is delegated to AWS Route53 hosted zone
 
-## Deploy app on AWS
+### Deploy app on AWS
 
-### Requirements
+#### Requirements
 
 * AWS account
 * User with active access keys and appropriate permissions (admin access recommended)
@@ -59,7 +59,7 @@ The `rafalwolny.pl` domain is provided by OVH registrar and configuration manage
 * AWS CDK installed and configured on the workstation
 * cloned repository
 
-### Deployment
+#### Deployment
 
 1. (optional) Check what changes are going to be done on AWS using this command in /cdk directory:
 ```
