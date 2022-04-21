@@ -57,7 +57,7 @@ export class BackendStack extends Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       bucketName: props.backendBucketName,
       removalPolicy: RemovalPolicy.DESTROY,
-    })
+    });
     backendBucket.grantReadWrite(backendAutoScalingGroup);
 
     const backendDeployment = new s3deploy.BucketDeployment(this, "backendDeployment", {
